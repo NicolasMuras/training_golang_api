@@ -1,4 +1,4 @@
-module training_golang_api
+module github.com/NicolasMuras/training_golang_api
 
 go 1.18
 

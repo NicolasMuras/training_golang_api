@@ -3,7 +3,7 @@ services:
   app:
     container_name: golang_container
     environment:
-      - DATABASE_URL=postgres://postgres:postgres@postgresdb:5432/postgres
+      - DATABASE_URL=postgresql://postgres:postgres@postgresdb:5432/postgres
     tty: true
     build: .
     ports:
@@ -27,10 +27,12 @@ services:
     image: postgres:latest
     container_name: postgres_container
     volumes:
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+        - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+    healthcheck:
+      test: pg_isready -U postgres
     ports:
       - '5432:5432'
     networks:

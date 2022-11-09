@@ -13,7 +13,7 @@ import (
 )
 
 func ConfigDB() *pgxpool.Pool {
-	conn, err := pgxpool.New(context.Background(), os.Getenv("DATABASE_URL"))
+	conn, err := pgxpool.New(context.Background(), "postgresql://postgres:postgres@postgresdb:5432/postgres")
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[ERROR] Unable to connect to database: %v\n", err)
